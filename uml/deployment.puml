@@ -1,0 +1,11 @@
+@startuml
+cloud swapi
+
+swapi - [integration-microservice]
+[integration-microservice] -- [films]
+[integration-microservice] -- [people]
+[integration-microservice] -- [planets]
+[integration-microservice] -- [species]
+[integration-microservice] -- [vehicles]
+
+@enduml

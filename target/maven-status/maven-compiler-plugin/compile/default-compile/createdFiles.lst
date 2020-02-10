@@ -1,0 +1,16 @@
+br/ind/guararapes/chalenge/json/ResultDTO.class
+br/ind/guararapes/chalenge/repository/SpeciesRepository.class
+br/ind/guararapes/chalenge/models/PeopleFilmModel.class
+br/ind/guararapes/chalenge/services/PeopleService.class
+br/ind/guararapes/chalenge/services/PeopleFilmService.class
+br/ind/guararapes/chalenge/ChalengeApplication.class
+br/ind/guararapes/chalenge/services/SpeciesService.class
+br/ind/guararapes/chalenge/services/FilmService.class
+br/ind/guararapes/chalenge/models/SpeciesModel.class
+br/ind/guararapes/chalenge/repository/PeopleFilmRepository.class
+br/ind/guararapes/chalenge/json/FilmsDTO.class
+br/ind/guararapes/chalenge/models/FilmModel.class
+br/ind/guararapes/chalenge/repository/FilmRepository.class
+br/ind/guararapes/chalenge/json/PeopleDTO.class
+br/ind/guararapes/chalenge/models/PeopleModel.class
+br/ind/guararapes/chalenge/repository/PeopleRepository.class

@@ -1,0 +1,16 @@
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/services/PeopleService.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/models/PeopleFilmModel.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/json/ResultDTO.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/models/SpeciesModel.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/repository/PeopleFilmRepository.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/services/FilmService.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/repository/PeopleRepository.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/json/PeopleDTO.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/ChalengeApplication.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/models/FilmModel.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/repository/SpeciesRepository.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/models/PeopleModel.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/services/SpeciesService.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/services/PeopleFilmService.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/json/FilmsDTO.java
+/home/carlzenriques/Documents/projetoGuararapes/desafio/src/main/java/br/ind/guararapes/chalenge/repository/FilmRepository.java
