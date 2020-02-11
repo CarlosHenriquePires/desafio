@@ -6,7 +6,6 @@
 package br.ind.guararapes.chalenge.repository;
 
 import br.ind.guararapes.chalenge.models.FilmModel;
-import br.ind.guararapes.chalenge.models.PeopleModel;
 import org.springframework.data.repository.CrudRepository;
 
 /**

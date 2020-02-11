@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,36 +45,38 @@ public class FilmModel implements Serializable {
 
     @Column
     private String title;
+    
     @Column
     private Long episode_id;
-    //@Size(max = 1000)
-    //@Column
-    //private String opening_crawl;
+    
+    @Size(max = 1000)
+    @Column
+    private String opening_crawl;
+    
     @Column
     private String director;
+    
     @Column
     private String producer;
+    
     @Column
     private String release_date;
 
-//    @ManyToMany(fetch = FetchType.LAZY,
-//            cascade = {
-//                CascadeType.PERSIST,
-//                CascadeType.MERGE
-//            },
-//            mappedBy = "film")
-//    @JoinTable(name = "people_film", joinColumns = {
-//    @JoinColumn(name = "idfilm", nullable = false, updatable = false)}, inverseJoinColumns = {
-//    @JoinColumn(name = "idpeople", nullable = false, updatable = false)})
+    @ManyToMany(mappedBy = "film", fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    private Set<PeopleModel> people = new HashSet<PeopleModel>();
     //@ManyToMany(mappedBy = "film", fetch = FetchType.LAZY)
    // private Set<PeopleModel> people = new HashSet<PeopleModel>();
 //    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy = "film")
 //    private Set<PeopleFilmModel> peoplefilm;
 
-    public FilmModel(String title, Long episode_id, String director, String producer, String release_date){
+    public FilmModel(String title, Long episode_id, String opening_crawl, String director, String producer, String release_date){
         this.title = title;
         this.episode_id = episode_id;
-        //this.opening_crawl = opening_crawl;
+        this.opening_crawl = opening_crawl;
         this.director = director;
         this.producer = producer;
         this.release_date = release_date;

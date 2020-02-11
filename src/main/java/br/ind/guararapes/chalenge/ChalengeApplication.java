@@ -1,11 +1,10 @@
 package br.ind.guararapes.chalenge;
 
+import br.ind.guararapes.chalenge.json.FilmsDTO;
 import br.ind.guararapes.chalenge.json.ResultDTO;
 import br.ind.guararapes.chalenge.models.FilmModel;
-import br.ind.guararapes.chalenge.models.PeopleFilmModel;
 import br.ind.guararapes.chalenge.models.PeopleModel;
 import br.ind.guararapes.chalenge.services.FilmService;
-import br.ind.guararapes.chalenge.services.PeopleFilmService;
 import br.ind.guararapes.chalenge.services.PeopleService;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,8 +22,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -50,7 +47,7 @@ public class ChalengeApplication {
     }
 
     @Bean
-    public static CommandLineRunner run(RestTemplate restTemplate, PeopleService peopleService, FilmService filmService, PeopleFilmService pfs) throws Exception {
+    public static CommandLineRunner run(RestTemplate restTemplate, PeopleService peopleService, FilmService filmService) throws Exception {
         return args -> {
             HttpHeaders headers = new HttpHeaders();
             headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -62,9 +59,8 @@ public class ChalengeApplication {
 
             PeopleModel p = new PeopleModel();
             FilmModel f = new FilmModel();
-            PeopleFilmModel pfm = new PeopleFilmModel();
 
-            Set<FilmModel> filmes = new HashSet<FilmModel>();
+            //Set<FilmModel> filmes = new HashSet<FilmModel>();
             List<String> link_films = new ArrayList();
 
             for (int i = 0; i < responseResult.getBody().getResults().size(); i++) {
@@ -77,35 +73,31 @@ public class ChalengeApplication {
                 String eye_skin = peoples.getResults().get(i).getEye_color();
                 String birth_year = peoples.getResults().get(i).getBirth_year();
                 String gender = peoples.getResults().get(i).getGender();
+               
                 p = new PeopleModel(name, height, mass, hair_color, skin_color, eye_skin, birth_year, gender);
                 peopleService.salvar(p);
-//                for (int j = 0; j < responseResult.getBody().getResults().get(i).getFilms().size(); j++) {
-//
-//                    link_films.add(responseResult.getBody().getResults().get(i).getFilms().get(j));
-//
-//                    for (int k = 0; k < link_films.size(); k++) {
-//
-//                        String film = link_films.get(k);
-//
-//                        ResponseEntity<FilmsDTO> responseFilm = restTemplate.exchange(film, HttpMethod.GET, entity, FilmsDTO.class);
-//
-//                        FilmsDTO films = responseFilm.getBody();
-//
-//                        f = new FilmModel(films.getTitle(), films.getEpisode_id(), films.getDirector(), films.getProducer(), films.getRelease_date());
-//                        //filmes.add(f);
-//                        filmService.salvar(f);
-//                        //pfm = new PeopleFilmModel(p,f);
-//                        //pfs.salvar(pfm);
-//                    }
-//                }
+                
+                for (int j = 0; j < responseResult.getBody().getResults().get(i).getFilms().size(); j++) {
+
+                    link_films.add(responseResult.getBody().getResults().get(i).getFilms().get(j));
+
+                    for (int k = 0; k < link_films.size(); k++) {
+
+                        String film = link_films.get(k);
+
+                        ResponseEntity<FilmsDTO> responseFilm = restTemplate.exchange(film, HttpMethod.GET, entity, FilmsDTO.class);
+
+                        FilmsDTO films = responseFilm.getBody();
+
+                        f = new FilmModel(films.getTitle(), films.getEpisode_id(), films.getOpening_crawl(), films.getDirector(), films.getProducer(), films.getRelease_date());
+                        //filmes.add(f);
+                        filmService.salvar(f);
+                    }
+                }
                 //p = new PeopleModel(name, height, mass, hair_color, skin_color, eye_skin, birth_year, gender, (Set<FilmModel>) filmes);
                 //peopleService.salvar(p);
-                
-
-//              filmService.salvarTodos(filmes);
-//                p.getFilm().addAll(filmes);
-//                peopleService.salvar(p);
             }
+            
         };
     }
 

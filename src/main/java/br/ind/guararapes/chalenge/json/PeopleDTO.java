@@ -25,8 +25,6 @@ public class PeopleDTO {
 
     private List<String> films;
 
-    private FilmsDTO filmsObj;
-
     private String name;
 
     private Long height;

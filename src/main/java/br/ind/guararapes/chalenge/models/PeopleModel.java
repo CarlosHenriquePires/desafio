@@ -7,13 +7,19 @@ package br.ind.guararapes.chalenge.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,7 +48,6 @@ public class PeopleModel implements Serializable {
         this.eye_color = eye_color;
         this.birth_year = birth_year;
         this.gender = gender;
-        //this.film = filmes;
     }
 
         public PeopleModel(Long idpeople,String name, Long height, Long mass, String hair_color, String skin_color, String eye_color, String birth_year, String gender) {
@@ -85,7 +90,7 @@ public class PeopleModel implements Serializable {
     @Column
     private String gender;
 
-/*    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                 CascadeType.PERSIST,
                 CascadeType.MERGE
@@ -93,7 +98,7 @@ public class PeopleModel implements Serializable {
     @JoinTable(name = "people_film", joinColumns = {
         @JoinColumn(name = "idpeople", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "idfilm", nullable = false, updatable = false)})
-    private Set<FilmModel> film = new HashSet<FilmModel>();*/
+    private Set<FilmModel> film = new HashSet<FilmModel>();
 //    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL, mappedBy = "people")
 //    private Set<PeopleFilmModel> peoplefilm;
 

@@ -31,24 +31,36 @@ public class FilmService {
     @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public FilmModel salvar(@RequestBody FilmModel film) {
 
-        FilmModel filmNew = new FilmModel();
         if (filmRepository.findByTitle(film.getTitle()) == null) {
             filmRepository.save(film);
-            filmNew = film;
-        } else {
-                for (FilmModel f : filmRepository.findAll())
-                    if (film.getTitle().equals(f.getTitle()))
-                        filmNew = f;
-                }
-        return filmNew;
-}
-//    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public FilmModel salvar(@RequestBody FilmModel film) {
+        }        
+//        FilmModel filmNew = new FilmModel();
 //        if (filmRepository.findByTitle(film.getTitle()) == null) {
 //            filmRepository.save(film);
-//        }
-//        return film;
-//    }
+//            filmNew = film;
+//        } else {
+//                for (FilmModel f : filmRepository.findAll())
+//                    if (film.getTitle().equals(f.getTitle()))
+//                        filmNew = f;
+//                    else
+//                        filmRepository.save(film);
+//                        filmNew = film;
+//                }
+        return film;
+}
+    @RequestMapping(value = "/saveNovo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public FilmModel salvarNovo (@RequestBody FilmModel film) {
+            filmRepository.save(film);
+        return film;
+    }
+    
+    @RequestMapping(value = "/atualizar", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public FilmModel atualizar(@RequestBody FilmModel film) {
+
+            filmRepository.save(film);
+
+            return film;
+}
 
     @RequestMapping(value = "/findOne/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public FilmModel buscaPeloId(@PathVariable("idfilme") Long idfilme) {
@@ -56,9 +68,18 @@ public class FilmService {
         return filmRepository.findById(idfilme).get();
     }
     
-        @RequestMapping(value = "/saveAll", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/saveAll", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<FilmModel> salvarTodos(@RequestBody List<FilmModel> filmes) {
         filmRepository.saveAll(filmes);
         return filmes;
+    }
+    
+    @RequestMapping(value = "/delOne/{idfilm}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public  String delPeloId(@PathVariable("idfilm") Long idfilm) {
+        
+        FilmModel f = filmRepository.findById(idfilm).get();
+        filmRepository.delete(f);
+        
+        return "Removido com Sucesso";
     }
 }
